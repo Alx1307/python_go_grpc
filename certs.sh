@@ -1,5 +1,5 @@
 cd certs && \
-	cfssl gencert - initca -batch ca-csr.json | cfssljson -bare ca && \
+	cfssl gencert -initca ca-csr.json | cfssljson -bare ca - && \
 	cfssl gencert \
 		-ca=ca.pem \
 		-ca-key=ca-key.pem \
@@ -9,5 +9,5 @@ cd certs && \
 	cfssl gencert \
 		-ca=ca.pem \
 		-ca-key=ca-key.pem \
-		-config=ca-config.pem \
+		-config=ca-config.json \
 		-profile=client client-csr.json | cfssljson -bare client
